@@ -1,10 +1,5 @@
-const {fetchMyIP, fetchCoordsByIP} = require('./iss_promised');
+const {nextISSTimesForMyLocation} = require('./iss_promised');
+const printPassTime = require('./printPassTime');
 
-fetchMyIP()
-.then(result =>  JSON.parse(result)['ip'])
-.then(ip =>  fetchCoordsByIP(ip))
-.then(result => {
-  const {latitude, longitude} = JSON.parse(result);
-  // console.log('long', longitude, 'lat', latitude);
-  // return {latitude,longitude}
-});
+nextISSTimesForMyLocation()
+.then(result => printPassTime(result));
